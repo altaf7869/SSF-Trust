@@ -12,28 +12,38 @@
 
 <style>
     :root {
-        --primary-emerald: #065f46;
-        --accent-lime: #a3e635;
-        --soft-bg: #f8fafc;
-        --glass: rgba(255, 255, 255, 0.95);
-    }
-html, body { overflow-x: hidden; width: 100%; }
-    body {
-        font-family: 'Outfit', sans-serif;
-        background-color: var(--soft-bg);
-        color: #1e293b;
-        scroll-padding-top: 85px; /* Ensures section headers aren't hidden by sticky nav */
-    }
+    --primary-emerald: #065f46;
+    --accent-lime: #a3e635;
+    --soft-bg: #f8fafc;
+    --glass: rgba(255, 255, 255, 0.95);
+}
 
-    h1, h2, h3, .founder-name { font-family: 'Playfair Display', serif; }
+html, body {
+    overflow-x: hidden;
+    width: 100%;
+}
 
-    /* ================= NAVBAR (FIXED STICKY) ================= */
-    .navbar {
-        background: var(--glass);
-        backdrop-filter: blur(10px);
-        border-bottom: 1px solid rgba(0,0,0,0.05);
-        z-index: 2000; /* Highest priority */
-    }
+body {
+    font-family: 'Outfit', sans-serif;
+    background-color: var(--soft-bg);
+    color: #1e293b;
+    padding-top: 70px; /* FIX navbar overlap */
+}
+
+h1, h2, h3, .founder-name {
+    font-family: 'Playfair Display', serif;
+}
+
+/* ================= NAVBAR ================= */
+.navbar {
+    background: var(--glass) !important;
+    backdrop-filter: blur(12px);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 9999;
+    transition: 0.3s;
+}
 
     /* Logo Styling */
     .navbar-brand {
@@ -87,7 +97,7 @@ html, body { overflow-x: hidden; width: 100%; }
         color: white;
         padding: 120px 0 80px;
         position: relative;
-        overflow: hidden;
+       
     }
 
     @media (max-width: 768px) {
@@ -172,23 +182,67 @@ html, body { overflow-x: hidden; width: 100%; }
         .display-4 { font-size: 2.2rem !important; }
         .founder-frame { padding: 0; }
     }
+    /* ================= CONTACT SECTION ================= */
+    .contact-info-card {
+        background: white;
+        border-radius: 24px;
+        padding: 2rem;
+        height: 100%;
+        border: 1px solid rgba(0,0,0,0.05);
+        transition: all 0.3s ease;
+    }
+
+    .contact-info-card:hover {
+        box-shadow: 0 15px 40px rgba(6, 95, 70, 0.08);
+        transform: translateY(-5px);
+    }
+
+    .icon-box {
+        width: 60px;
+        height: 60px;
+        background: rgba(6, 95, 70, 0.1);
+        color: var(--primary-emerald);
+        border-radius: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .contact-link {
+        text-decoration: none;
+        color: inherit;
+        transition: color 0.2s;
+    }
+
+    .contact-link:hover {
+        color: var(--primary-emerald);
+    }
+
+    .map-container {
+        border-radius: 30px;
+        overflow: hidden;
+        box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+        border: 8px solid white;
+    }
 </style>
 </head>
 <body data-bs-spy="scroll" data-bs-target="#mainNav">
 
 <nav id="mainNav" class="navbar navbar-expand-lg sticky-top py-2">
     <div class="container">
-        <a class="navbar-brand" href="#home">
-            <svg class="brand-symbol" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <a class="navbar-brand d-flex align-items-center" href="#home">
+            <svg class="brand-symbol me-2" style="width: 40px; height: 40px;" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <circle cx="50" cy="50" r="50" fill="white" fill-opacity="0.9"/>
                 <path d="M43.23 68.1C47.85 71.02 53.68 71.32 58.5 68.86C61.34 67.4 63.4 65.03 64.67 62.13C64.91 61.59 64.53 60.98 63.95 60.98H56.51C56.24 60.98 56.02 61.16 55.93 61.41C55.43 62.72 54.49 63.79 53.22 64.45C51.13 65.51 48.61 65.38 46.61 64.12C44.61 62.86 43.43 60.67 43.43 58.33V53.22H63.89C64.5 53.22 65 52.72 65 52.11C65 51.5 64.5 51 63.89 51H43.43V43.1C43.43 40.76 44.61 38.57 46.61 37.31C48.61 36.05 51.13 35.92 53.22 36.98C54.49 37.64 55.43 38.71 55.93 40.02C56.02 40.27 56.24 40.45 56.51 40.45H63.95C64.53 40.45 64.91 39.84 64.67 39.3C63.4 36.4 61.34 34.03 58.5 32.57C53.68 30.11 47.85 30.41 43.23 33.33C38.61 36.25 35.88 41.25 35.88 46.51V54.91C35.88 60.18 38.61 65.18 43.23 68.1Z" fill="#065F46"/>
                 <path d="M54.71 20.35C52.13 20.35 50 22.48 50 25.06C50 27.64 52.13 29.77 54.71 29.77C57.29 29.77 59.42 27.64 59.42 25.06C59.42 22.48 57.29 20.35 54.71 20.35Z" fill="#A3E635"/>
                 <path d="M74.39 42.17C71.81 42.17 69.68 44.3 69.68 46.88C69.68 49.46 71.81 51.59 74.39 51.59C76.97 51.59 79.1 49.46 79.1 46.88C79.1 44.3 76.97 42.17 74.39 42.17Z" fill="#A3E635"/>
                 <path d="M54.71 63.98C52.13 63.98 50 66.11 50 68.69C50 71.27 52.13 73.4 54.71 73.4C57.29 73.4 59.42 71.27 59.42 68.69C59.42 66.11 57.29 63.98 54.71 63.98Z" fill="#A3E635"/>
             </svg>
-            <div class="brand-text">
-                <span>Sadbhavana Sarvajanik Foundation</span>
-                <span class="brand-tagline">Education • Empowerment</span>
+            <div class="brand-text d-flex flex-column">
+                <span class="fw-bold lh-1" style="font-size: 1.1rem; color: #065F46;">Sadbhavana Sarvajanik Foundation</span>
+                <span class="brand-tagline small text-muted">Education • Empowerment</span>
             </div>
         </a>
         <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -196,14 +250,15 @@ html, body { overflow-x: hidden; width: 100%; }
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto gap-lg-3 align-items-center">
-                <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="#message">Message</a></li>
-                <li class="nav-item"><a class="nav-link" href="#team">Core Team</a></li>
-                <li class="nav-item"><a class="nav-link" href="#financials">Financial</a></li>
-                <li class="nav-item"><a class="nav-link" href="#donors">Donors</a></li>
+                <li class="nav-item"><a class="nav-link fw-semibold" href="#home">Home</a></li>
+                <li class="nav-item"><a class="nav-link fw-semibold" href="#message">Message</a></li>
+                <li class="nav-item"><a class="nav-link fw-semibold" href="#team">Core Team</a></li>
+                <li class="nav-item"><a class="nav-link fw-semibold" href="#financials">Financial</a></li>
+                <li class="nav-item"><a class="nav-link fw-semibold" href="#donors">Donors</a></li>
                 <li class="nav-item ms-lg-2 mt-3 mt-lg-0 w-100 w-lg-auto">
-                    <a class="btn btn-success rounded-pill px-4 w-100" href="#support">Support</a>
+                    <a class="btn btn-success rounded-pill px-4 w-100 shadow-sm" href="#support">Support</a>
                 </li>
+                <li class="nav-item"><a class="nav-link fw-semibold" href="#contact">Contact</a></li>
             </ul>
         </div>
     </div>
@@ -213,60 +268,18 @@ html, body { overflow-x: hidden; width: 100%; }
     <div class="container">
         <div class="row align-items-center">
             <div class="col-lg-8 mx-auto text-center" data-aos="fade-up">
-                
-                <h6 class="text-uppercase fw-bold mb-3" 
-                    style="color: var(--accent-lime); letter-spacing: 2px;">
-                    Registration No: F/974/NARMADA
-                </h6>
-
-                <h1 class="display-3 fw-bolder mb-3">
-                    SADBHAVANA SARVAJANIK FOUNDATION
-                </h1>
-
-                <!-- ✅ FIXED SUB TEXT -->
-                <p class="hero-subtext mb-4 px-2 px-md-5 fst-italic">
-                    When we educate a child, we empower an entire family 
-                    and shape a stronger nation.
-                </p>
-
+                <h6 class="text-uppercase fw-bold mb-3" style="color: var(--accent-lime); letter-spacing: 2px;">Registration No: F/974/NARMADA</h6>
+                <h1 class="display-3 fw-bolder mb-3">SADBHAVANA SARVAJANIK FOUNDATION</h1>
+                <p class="hero-subtext mb-4 px-2 px-md-5 fst-italic">When we educate a child, we empower an entire family and shape a stronger nation.</p>
                 <div class="d-flex flex-wrap gap-3 justify-content-center">
-                    <a href="#financials" class="btn btn-light btn-lg rounded-pill px-4 px-md-5 fw-bold">
-                        Financial Review
-                    </a>
-                    <a href="#donors" class="btn btn-outline-light btn-lg rounded-pill px-4 px-md-5 fw-bold">
-                        Donor List
-                    </a>
+                    <a href="#financials" class="btn btn-light btn-lg rounded-pill px-4 px-md-5 fw-bold">Financial Review</a>
+                    <a href="#donors" class="btn btn-outline-light btn-lg rounded-pill px-4 px-md-5 fw-bold">Donor List</a>
                 </div>
-
             </div>
         </div>
     </div>
 </header>
 
-<!-- <section id="message" class="py-5 mt-5">
-    <div class="container">
-        <div class="row g-5 align-items-center">
-            <div class="col-lg-6" data-aos="fade-right">
-                <span class="section-tag">Word from Leadership</span>
-                <h2 class="display-4 fw-bold mt-2 mb-4">Message from the Founder</h2>
-                <div class="founder-quote ps-4 border-start border-4 border-success">
-                    <p class="fs-6 fst-italic text-muted">"At Sadbhavana Sarvajanik Foundation, we believe that empowering farmers is the first step toward building resilient communities. When farmers thrive, their children gain access to education, and with education comes the promise of breaking cycles of hardship. By uplifting farming families and nurturing the dreams of their children, we lay the foundation for a stronger, more equitable society."<br><br>
-                    Education is the light that dispels darkness and opens doors of opportunity—especially for children born into hardship. At Sadbhavana Sarvajanik Foundation, our journey has always been guided by a simple belief: when we educate a child, we empower an entire family and shape a stronger nation.</p>
-                </div>
-                <div class="mt-4">
-                    <h4 class="founder-name mb-0">Dr. Khurshid Hussain Anwar Hussain Syed</h4>
-                    <p class="text-success fw-bold">Founder / Trustee</p>
-                </div>
-            </div>
-            <div class="col-lg-6" data-aos="fade-left">
-                <div class="card-modern p-4 p-md-5 bg-dark text-white shadow-lg">
-                    <p class="mb-4 fs-6 opacity-90">During the year 2025–26, our trust continued to stand beside farmers facing uncertainty, widows striving for dignity, and children dreaming of a better future. Each book distributed, each scholarship granted, and each family supported is a step toward hope.</p>
-                    <p class="mb-0 fs-6 opacity-90">I extend my heartfelt gratitude to our donors, volunteers, trustees, and well-wishers who make this mission possible. Together, let us continue to create pathways of education, equality, and empowerment.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section> -->
 <section id="message" class="py-5 mt-3 overflow-hidden">
     <div class="container">
         <div class="row g-0 align-items-center">
@@ -277,8 +290,7 @@ html, body { overflow-x: hidden; width: 100%; }
                 <div class="founder-frame p-4">
                     <div class="position-relative">
                         <img src="assets/images/bava2.png" alt="Founder" class="img-fluid rounded-5 shadow-xl w-100" 
-                             style="max-height: 550px; object-fit: cover; border: 12px solid white;"
-                             onerror="this.src='https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=800'">
+                             style="max-height: 550px; object-fit: cover; border: 12px solid white;">
                         
                         <!-- <div class="position-absolute top-0 end-0 m-n3 bg-accent-lime p-3 rounded-circle shadow-lg text-center d-flex flex-column justify-content-center" 
                              style="width: 100px; height: 100px; background: #a3e635; transform: translate(20px, -20px);">
@@ -532,7 +544,68 @@ html, body { overflow-x: hidden; width: 100%; }
         </div>
     </div>
 </section>
+<section id="contact" class="py-5 bg-light">
+    <div class="container py-4">
+        <div class="text-center mb-5" data-aos="fade-up">
+            <span class="section-tag">Get in Touch</span>
+            <h2 class="display-5 fw-bold">Contact Details</h2>
+            <p class="text-muted">Reach out to us for any queries regarding our initiatives or donations.</p>
+        </div>
 
+        <div class="row g-4 mb-5">
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="contact-info-card">
+                    <div class="icon-box">
+                        <i class="bi bi-geo-alt-fill"></i>
+                    </div>
+                    <h5 class="fw-bold">Our Office</h5>
+                    <p class="text-muted mb-0">Tilakwada, District: Narmada,<br>Gujarat - 391120, India.</p>
+                </div>
+            </div>
+
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="contact-info-card">
+                    <div class="icon-box">
+                        <i class="bi bi-telephone-fill"></i>
+                    </div>
+                    <h5 class="fw-bold">Call Us</h5>
+                    <p class="text-muted mb-1">
+                        <a href="tel:+919106685647" class="contact-link">+91 91066 85647</a>
+                    </p>
+                    <p class="text-muted mb-0">
+                        <a href="tel:+919913121871" class="contact-link">+91 99131 21871</a>
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                <div class="contact-info-card">
+                    <div class="icon-box">
+                        <i class="bi bi-envelope-heart-fill"></i>
+                    </div>
+                    <h5 class="fw-bold">Email Support</h5>
+                    <p class="text-muted mb-1">
+                        <a href="mailto:info@ssffoundation.org" class="contact-link">info@ssffoundation.org</a>
+                    </p>
+                    <p class="text-muted mb-0">
+                        <a href="mailto:support@ssffoundation.org" class="contact-link">support@ssffoundation.org</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row" data-aos="zoom-in">
+            <div class="col-12">
+                <div class="map-container">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14781.996162231575!2d73.6148383!3d21.921356!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395fc04318c39387%3A0xc397262f30554109!2sTilakwada%2C%20Gujarat!5e0!3m2!1sen!2sin!4v1715000000000!5m2!1sen!2sin" 
+                        width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 <footer class="py-5 bg-white border-top">
     <div class="container text-center text-lg-start">
         <div class="row g-4 align-items-center">
@@ -566,12 +639,21 @@ html, body { overflow-x: hidden; width: 100%; }
 <script>
     AOS.init({ duration: 1000, once: true });
     
-    // Auto-close mobile menu on click
+   // Smooth scroll for nav links and auto-close mobile menu
     const navLinks = document.querySelectorAll('.nav-link');
     const menuToggle = document.getElementById('navbarNav');
     const bsCollapse = new bootstrap.Collapse(menuToggle, {toggle:false});
     navLinks.forEach((l) => {
         l.addEventListener('click', () => { if(window.innerWidth < 992) { bsCollapse.hide(); } });
+    });
+
+    // Add scrolled class to body for potential nav effects
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            document.body.classList.add('scrolled');
+        } else {
+            document.body.classList.remove('scrolled');
+        }
     });
 </script>
 <script src="doner.js"></script>
