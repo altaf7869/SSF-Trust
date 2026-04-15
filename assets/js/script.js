@@ -107,3 +107,23 @@
 
     const statsBar = document.querySelector('.stats-bar');
     if (statsBar) statsObserver.observe(statsBar);
+
+    document.getElementById('donorSearch').addEventListener('keyup', function() {
+    // 1. Get the search text and convert to lowercase for case-insensitive matching
+    let filter = this.value.toLowerCase();
+    
+    // 2. Target all rows in the table body
+    let rows = document.querySelectorAll('#donorBody tr');
+
+    rows.forEach(row => {
+        // 3. Get the text from the row (Donor Name and Location)
+        let text = row.textContent.toLowerCase();
+        
+        // 4. If search text is found, show row; otherwise, hide it
+        if (text.includes(filter)) {
+            row.style.display = "";
+        } else {
+            row.style.display = "none";
+        }
+    });
+});

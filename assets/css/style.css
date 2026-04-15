@@ -184,11 +184,12 @@
 
     /* ========== HERO ========== */
     .hero {
-        min-height: 92vh;
+        min-height: 100vh;
         display: flex;
         align-items: center;
         position: relative;
         overflow: hidden;
+        margin-bottom: 35px;
     }
 
     .hero-slide {
@@ -321,6 +322,7 @@
         display: flex;
         gap: 16px;
         flex-wrap: wrap;
+        margin-top: 5%;
     }
 
     .btn-hero-primary {
@@ -402,8 +404,9 @@
         .hero-scroll-indicator { display: none; }
     }
 
+    
     /* ========== STATS BAR ========== */
-    .stats-bar {
+    /* .stats-bar {
         background: var(--surface);
         margin-top: -60px;
         position: relative;
@@ -452,16 +455,17 @@
         font-weight: 600;
     }
 
-    @media (max-width: 767px) {
+    @media (max-width: 767px) and (max-width: 1024px) {
         .stats-bar { margin-top: -30px; border-radius: var(--radius-lg); }
         .stat-item:not(:last-child)::after { display: none; }
         .stat-item { padding: 1.2rem 1rem; border-bottom: 1px solid var(--border); }
         .stat-item:last-child { border-bottom: none; }
         .stat-number { font-size: 1.8rem; }
     }
+     */
 
     /* ========== SECTION COMMONS ========== */
-    .section-padding { padding: 6rem 0; }
+    .section-padding { padding: 3rem 0; }
 
     .section-label {
         display: inline-flex;
