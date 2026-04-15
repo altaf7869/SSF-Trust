@@ -7,534 +7,422 @@
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,700;1,500;1,700&display=swap" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-
-<style>
-    :root {
-    --primary-emerald: #065f46;
-    --accent-lime: #a3e635;
-    --soft-bg: #f8fafc;
-    --glass: rgba(255, 255, 255, 0.95);
-}
-
-html, body {
-    overflow-x: hidden;
-    width: 100%;
-}
-
-body {
-    font-family: 'Outfit', sans-serif;
-    background-color: var(--soft-bg);
-    color: #1e293b;
-    padding-top: 70px; /* FIX navbar overlap */
-}
-
-h1, h2, h3, .founder-name {
-    font-family: 'Playfair Display', serif;
-}
-
-/* ================= NAVBAR ================= */
-.navbar {
-    background: var(--glass) !important;
-    backdrop-filter: blur(12px);
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 9999;
-    transition: 0.3s;
-}
-
-    /* Logo Styling */
-    .navbar-brand {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        transition: transform 0.2s;
-    }
-    .navbar-brand:hover { transform: translateY(-1px); }
-    .brand-symbol { height: 32px; width: auto; }
-    .brand-text {
-        font-weight: 800;
-        font-size: 1.25rem;
-        color: var(--primary-emerald);
-        line-height: 1;
-        display: flex;
-        flex-direction: column;
-    }
-    .brand-tagline {
-        font-weight: 400;
-        font-size: 0.65rem;
-        color: #64748b;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-        margin-top: 2px;
-    }
-    
-    /* Mobile Logo Fix */
-    @media (max-width: 991.98px) {
-        .brand-text { font-size: 1.1rem; }
-        .brand-text span { display: none; } /* Show only symbol + SSF on small screens */
-        .brand-text::after { content: 'SSF'; }
-    }
-    
-    .nav-link { font-weight: 600; color: #475569 !important; }
-    .nav-link:hover { color: var(--primary-emerald) !important; }
-
-    @media (max-width: 991.98px) {
-        .navbar-collapse {
-            background: white;
-            padding: 1.5rem;
-            border-radius: 20px;
-            margin-top: 10px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
-    }
-
-    /* ================= HERO SECTION ================= */
-    .hero-section {
-        background: linear-gradient(135deg, #064e3b 0%, #065f46 100%);
-        color: white;
-        padding: 120px 0 80px;
-        position: relative;
-       
-    }
-
-    @media (max-width: 768px) {
-        .hero-section { padding: 100px 0 60px; text-align: center; }
-        .display-3 { font-size: 2.2rem; }
-    }
-
-    .hero-subtext {
-    font-size: 1.1rem;
-    color: rgba(255,255,255,0.85);
-    max-width: 700px;
-    margin: 0 auto;
-    line-height: 1.6;
-}
-
-/* Mobile improvement */
-@media (max-width: 768px) {
-    .hero-subtext {
-        font-size: 0.95rem;
-        padding: 0 10px;
-    }
-}
-
-    /* ================= CARDS & UI ================= */
-    .card-modern {
-        background: white;
-        border: none;
-        border-radius: 24px;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.04);
-        transition: transform 0.3s ease;
-        height: 100%;
-    }
-
-    .section-tag {
-        display: inline-block;
-        background: rgba(6, 95, 70, 0.1);
-        color: var(--primary-emerald);
-        padding: 6px 16px;
-        border-radius: 50px;
-        font-weight: 800;
-        font-size: 0.75rem;
-        text-transform: uppercase;
-        margin-bottom: 1rem;
-    }
-
-    /* ================= TABLES (MOBILE FIX) ================= */
-    .table-responsive {
-        max-height: 450px;
-        overflow-y: auto;
-        -webkit-overflow-scrolling: touch;
-        border-radius: 15px;
-    }
-
-    #donorTable thead th {
-        position: sticky;
-        top: 0;
-        background: #f8f9fa;
-        z-index: 10;
-    }
-
-    /* ================= BANK DETAILS ================= */
-    .bank-details {
-        background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
-        color: white;
-        border-radius: 30px;
-    }
-   /* Premium Typography & Effects */
-    .tracking-widest { letter-spacing: 3px; }
-    .fw-extrabold { font-weight: 800; }
-    .x-small { font-size: 0.65rem; }
-    
-    .founder-frame {
-        perspective: 1000px;
-    }
-    
-    .shadow-xl {
-        box-shadow: 0 30px 60px rgba(0,0,0,0.12) !important;
-    }
-
-    @media (max-width: 991px) {
-        .ps-lg-5 { padding-left: 0 !important; }
-        .display-4 { font-size: 2.2rem !important; }
-        .founder-frame { padding: 0; }
-    }
-    /* ================= CONTACT SECTION ================= */
-    .contact-info-card {
-        background: white;
-        border-radius: 24px;
-        padding: 2rem;
-        height: 100%;
-        border: 1px solid rgba(0,0,0,0.05);
-        transition: all 0.3s ease;
-    }
-
-    .contact-info-card:hover {
-        box-shadow: 0 15px 40px rgba(6, 95, 70, 0.08);
-        transform: translateY(-5px);
-    }
-
-    .icon-box {
-        width: 60px;
-        height: 60px;
-        background: rgba(6, 95, 70, 0.1);
-        color: var(--primary-emerald);
-        border-radius: 18px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.5rem;
-        margin-bottom: 1.5rem;
-    }
-
-    .contact-link {
-        text-decoration: none;
-        color: inherit;
-        transition: color 0.2s;
-    }
-
-    .contact-link:hover {
-        color: var(--primary-emerald);
-    }
-
-    .map-container {
-        border-radius: 30px;
-        overflow: hidden;
-        box-shadow: 0 20px 50px rgba(0,0,0,0.1);
-        border: 8px solid white;
-    }
+    <link rel="stylesheet" href="./assets/css/style.css"><style>
+ 
 </style>
 </head>
-<body data-bs-spy="scroll" data-bs-target="#mainNav">
+<body>
+<!-- Cursor Glow -->
+<div class="cursor-glow" id="cursorGlow"></div>
 
-<nav id="mainNav" class="navbar navbar-expand-lg sticky-top py-2">
+<!-- ========== NAVBAR ========== -->
+<nav id="mainNav" class="navbar navbar-expand-lg navbar-main fixed-top">
     <div class="container">
-        <a class="navbar-brand d-flex align-items-center" href="#home">
-            <svg class="brand-symbol me-2" style="width: 40px; height: 40px;" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="50" cy="50" r="50" fill="white" fill-opacity="0.9"/>
-                <path d="M43.23 68.1C47.85 71.02 53.68 71.32 58.5 68.86C61.34 67.4 63.4 65.03 64.67 62.13C64.91 61.59 64.53 60.98 63.95 60.98H56.51C56.24 60.98 56.02 61.16 55.93 61.41C55.43 62.72 54.49 63.79 53.22 64.45C51.13 65.51 48.61 65.38 46.61 64.12C44.61 62.86 43.43 60.67 43.43 58.33V53.22H63.89C64.5 53.22 65 52.72 65 52.11C65 51.5 64.5 51 63.89 51H43.43V43.1C43.43 40.76 44.61 38.57 46.61 37.31C48.61 36.05 51.13 35.92 53.22 36.98C54.49 37.64 55.43 38.71 55.93 40.02C56.02 40.27 56.24 40.45 56.51 40.45H63.95C64.53 40.45 64.91 39.84 64.67 39.3C63.4 36.4 61.34 34.03 58.5 32.57C53.68 30.11 47.85 30.41 43.23 33.33C38.61 36.25 35.88 41.25 35.88 46.51V54.91C35.88 60.18 38.61 65.18 43.23 68.1Z" fill="#065F46"/>
-                <path d="M54.71 20.35C52.13 20.35 50 22.48 50 25.06C50 27.64 52.13 29.77 54.71 29.77C57.29 29.77 59.42 27.64 59.42 25.06C59.42 22.48 57.29 20.35 54.71 20.35Z" fill="#A3E635"/>
-                <path d="M74.39 42.17C71.81 42.17 69.68 44.3 69.68 46.88C69.68 49.46 71.81 51.59 74.39 51.59C76.97 51.59 79.1 49.46 79.1 46.88C79.1 44.3 76.97 42.17 74.39 42.17Z" fill="#A3E635"/>
-                <path d="M54.71 63.98C52.13 63.98 50 66.11 50 68.69C50 71.27 52.13 73.4 54.71 73.4C57.29 73.4 59.42 71.27 59.42 68.69C59.42 66.11 57.29 63.98 54.71 63.98Z" fill="#A3E635"/>
-            </svg>
-            <div class="brand-text d-flex flex-column">
-                <span class="fw-bold lh-1" style="font-size: 1.1rem; color: #065F46;">Sadbhavana Sarvajanik Foundation</span>
-                <span class="brand-tagline small text-muted">Education • Empowerment</span>
+        <a class="navbar-brand-wrap" href="#home">
+            <div class="brand-icon">
+                <svg width="22" height="22" viewBox="0 0 100 100" fill="none">
+                    <path d="M43.23 68.1C47.85 71.02 53.68 71.32 58.5 68.86C61.34 67.4 63.4 65.03 64.67 62.13C64.91 61.59 64.53 60.98 63.95 60.98H56.51C56.24 60.98 56.02 61.16 55.93 61.41C55.43 62.72 54.49 63.79 53.22 64.45C51.13 65.51 48.61 65.38 46.61 64.12C44.61 62.86 43.43 60.67 43.43 58.33V53.22H63.89C64.5 53.22 65 52.72 65 52.11C65 51.5 64.5 51 63.89 51H43.43V43.1C43.43 40.76 44.61 38.57 46.61 37.31C48.61 36.05 51.13 35.92 53.22 36.98C54.49 37.64 55.43 38.71 55.93 40.02C56.02 40.27 56.24 40.45 56.51 40.45H63.95C64.53 40.45 64.91 39.84 64.67 39.3C63.4 36.4 61.34 34.03 58.5 32.57C53.68 30.11 47.85 30.41 43.23 33.33C38.61 36.25 35.88 41.25 35.88 46.51V54.91C35.88 60.18 38.61 65.18 43.23 68.1Z" fill="white"/>
+                    <path d="M54.71 20.35C52.13 20.35 50 22.48 50 25.06C50 27.64 52.13 29.77 54.71 29.77C57.29 29.77 59.42 27.64 59.42 25.06C59.42 22.48 57.29 20.35 54.71 20.35Z" fill="#a3e635"/>
+                    <path d="M74.39 42.17C71.81 42.17 69.68 44.3 69.68 46.88C69.68 49.46 71.81 51.59 74.39 51.59C76.97 51.59 79.1 49.46 79.1 46.88C79.1 44.3 76.97 42.17 74.39 42.17Z" fill="#a3e635"/>
+                    <path d="M54.71 63.98C52.13 63.98 50 66.11 50 68.69C50 71.27 52.13 73.4 54.71 73.4C57.29 73.4 59.42 71.27 59.42 68.69C59.42 66.11 57.29 63.98 54.71 63.98Z" fill="#a3e635"/>
+                </svg>
+            </div>
+            <div>
+                <div class="brand-name">Sadbhavana Sarvajanik Foundation</div>
+                <div class="brand-sub">Education &bull; Empowerment</div>
             </div>
         </a>
-        <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+
+        <button class="navbar-toggler border-0 shadow-none fs-6" type="button" data-bs-toggle="collapse" data-bs-target="#navContent">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto gap-lg-3 align-items-center">
-                <li class="nav-item"><a class="nav-link fw-semibold" href="#home">Home</a></li>
-                <li class="nav-item"><a class="nav-link fw-semibold" href="#message">Message</a></li>
-                <li class="nav-item"><a class="nav-link fw-semibold" href="#team">Core Team</a></li>
-                <li class="nav-item"><a class="nav-link fw-semibold" href="#financials">Financial</a></li>
-                <li class="nav-item"><a class="nav-link fw-semibold" href="#donors">Donors</a></li>
-                <li class="nav-item ms-lg-2 mt-3 mt-lg-0 w-100 w-lg-auto">
-                    <a class="btn btn-success rounded-pill px-4 w-100 shadow-sm" href="#support">Support</a>
+
+        <div class="collapse navbar-collapse" id="navContent">
+            <ul class="navbar-nav ms-auto align-items-center gap-1">
+                <li class="nav-item"><a class="nav-link nav-link-custom" href="#home">Home</a></li>
+                <li class="nav-item"><a class="nav-link nav-link-custom" href="#message">Message</a></li>
+                <li class="nav-item"><a class="nav-link nav-link-custom" href="#team">Team</a></li>
+                <li class="nav-item"><a class="nav-link nav-link-custom" href="#financials">Financials</a></li>
+                <li class="nav-item"><a class="nav-link nav-link-custom" href="#donors">Donors</a></li>
+                <li class="nav-item"><a class="nav-link nav-link-custom" href="#contact">Contact</a></li>
+                <li class="nav-item ms-lg-2 mt-3 mt-lg-0">
+                    <a class="btn btn-donate-nav" href="#support">Donate Now</a>
                 </li>
-                <li class="nav-item"><a class="nav-link fw-semibold" href="#contact">Contact</a></li>
             </ul>
         </div>
     </div>
 </nav>
 
-<header id="home" class="hero-section">
-    <div class="container">
+<!-- ========== HERO ========== -->
+<header id="home" class="hero">
+    <div class="hero-slide active" style="background-image: url('assets/images/banner1.png');"></div>
+    <div class="hero-slide" style="background-image: url('assets/images/banner2.jpeg');"></div>
+    <div class="hero-slide" style="background-image: url('assets/images/banner1.png');"></div>
+
+    <div class="hero-overlay"></div>
+    <div class="hero-grain"></div>
+
+    <div class="hero-particles" id="heroParticles"></div>
+
+    <div class="container hero-content">
         <div class="row align-items-center">
-            <div class="col-lg-8 mx-auto text-center" data-aos="fade-up">
-                <h6 class="text-uppercase fw-bold mb-3" style="color: var(--accent-lime); letter-spacing: 2px;">Registration No: F/974/NARMADA</h6>
-                <h1 class="display-3 fw-bolder mb-3">SADBHAVANA SARVAJANIK FOUNDATION</h1>
-                <p class="hero-subtext mb-4 px-2 px-md-5 fst-italic">When we educate a child, we empower an entire family and shape a stronger nation.</p>
-                <div class="d-flex flex-wrap gap-3 justify-content-center">
-                    <a href="#financials" class="btn btn-light btn-lg rounded-pill px-4 px-md-5 fw-bold">Financial Review</a>
-                    <a href="#donors" class="btn btn-outline-light btn-lg rounded-pill px-4 px-md-5 fw-bold">Donor List</a>
+            <div class="col-lg-8 mx-auto text-center" data-aos="fade-up" data-aos-duration="1200">
+                <div class="hero-badge">
+                    <span class="pulse-dot"></span>
+                    Reg. No: F/974/NARMADA
+                </div>
+                <h1 class="hero-title display-font">
+                    Sadbhavana<br><span class="accent-word">Sarvajanik</span> Foundation
+                </h1>
+                <p class="hero-desc mx-auto">
+                    When we educate a child, we empower an entire family and shape a stronger nation. Join us in building resilient communities through education.
+                </p>
+                <div class="hero-actions justify-content-center">
+                    <a href="#financials" class="btn-hero-primary">
+                        <i class="bi bi-bar-chart-line-fill"></i> Financial Review
+                    </a>
+                    <a href="#donors" class="btn-hero-secondary">
+                        <i class="bi bi-heart-fill"></i> Donor List
+                    </a>
                 </div>
             </div>
         </div>
+    </div>
+
+    <div class="hero-scroll-indicator">
+        <span>Scroll</span>
+        <div class="scroll-line"></div>
     </div>
 </header>
 
-<section id="message" class="py-5 mt-3 overflow-hidden">
+<!-- ========== STATS BAR ========== -->
+<section class="container">
+    <div class="stats-bar" data-aos="fade-up" data-aos-delay="200">
+        <div class="row g-0">
+            <div class="col-6 col-md-3">
+                <div class="stat-item">
+                    <div class="stat-number" data-count="878485">0</div>
+                    <div class="stat-label">Donations (₹)</div>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="stat-item">
+                    <div class="stat-number" data-count="16">0<span class="accent">+</span></div>
+                    <div class="stat-label">Trustees</div>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="stat-item">
+                    <div class="stat-number" data-count="3">0<span class="accent">+</span></div>
+                    <div class="stat-label">Years Active</div>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="stat-item">
+                    <div class="stat-number" data-count="4">0<span class="accent">+</span></div>
+                    <div class="stat-label">Initiatives</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== FOUNDER MESSAGE ========== -->
+<section id="message" class="message-section section-padding">
     <div class="container">
-        <div class="row g-0 align-items-center">
-            
-            <div class="col-lg-6 position-relative" data-aos="zoom-in-right">
-                <div class="position-absolute top-0 start-0 w-75 h-100 bg-success opacity-10 rounded-5" style="transform: rotate(-3deg); z-index: -1;"></div>
-                
-                <div class="founder-frame p-4">
-                    <div class="position-relative">
-                        <img src="assets/images/bava2.png" alt="Founder" class="img-fluid rounded-5 shadow-xl w-100" 
-                             style="max-height: 550px; object-fit: cover; border: 12px solid white;">
-                        
-                        <!-- <div class="position-absolute top-0 end-0 m-n3 bg-accent-lime p-3 rounded-circle shadow-lg text-center d-flex flex-column justify-content-center" 
-                             style="width: 100px; height: 100px; background: #a3e635; transform: translate(20px, -20px);">
-                            <span class="fw-extrabold h4 mb-0 text-success">25+</span>
-                            <span class="x-small fw-bold text-dark text-uppercase" style="font-size: 10px;">Years Exp.</span>
-                        </div> -->
-                    </div>
+        <div class="row g-5 align-items-center">
+            <div class="col-lg-5" data-aos="fade-right" data-aos-duration="1000">
+                <div class="founder-image-wrapper">
+                    <img src="assets/images/bava2.png" alt="Dr. Khurshid Hussain Syed - Founder">
+                    <!-- <div class="founder-exp-badge">
+                        <div class="number">25+</div>
+                        <div class="label">Years Exp.</div>
+                    </div> -->
                 </div>
             </div>
 
-            <div class="col-lg-6 mt-5 mt-lg-0" data-aos="fade-left">
-                <div class="ps-lg-5">
-                    <div class="d-flex align-items-center gap-3 mb-4">
-                        <div style="width: 40px; height: 2px; background: var(--accent-lime);"></div>
-                        <span class="text-success fw-bold text-uppercase small tracking-widest">Message from the Founder</span>
+            <div class="col-lg-7" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
+                <div class="ps-lg-4">
+                    <div class="section-label">
+                        <i class="bi bi-chat-quote-fill"></i> Founder's Message
                     </div>
+                    <h2 class="section-title mb-4">
+                        Building <span class="text-gradient">Resilience</span> Through Education
+                    </h2>
 
-                    <h2 class="display-4 fw-extrabold mb-4" style="color: #0f172a;">Building <span class="text-success">Resilience</span> Through Education</h2>
-                    
-                    <div class="message-content position-relative">
-                        <span class="display-1 text-success opacity-10 position-absolute top-0 start-0" style="transform: translate(-30px, -40px); font-family: serif;">“</span>
-                        
-                        <p class="lead text-dark fw-medium mb-4" style="line-height: 1.8;">
+                    <div class="quote-block mb-4">
+                        <p class="quote-text">
                             At Sadbhavana Sarvajanik Foundation, we believe that empowering farmers is the first step toward building resilient communities. When farmers thrive, their children gain access to education, and with education comes the promise of breaking cycles of hardship.
                         </p>
-                        
-                        <p class="text-muted mb-5">
-                            Education is the light that dispels darkness and opens doors of opportunity—especially for children born into hardship. Our journey is guided by a simple belief: when we educate a child, we empower an entire family and shape a stronger nation.
-                        </p>
                     </div>
 
-                    <div class="founder-signature d-flex align-items-center gap-4">
-                        <div class="signature-line">
-                            <h4 class="founder-name fw-bold mb-0" style="color: #064e3b;">Dr. Khurshid Hussain Syed</h4>
+                    <p class="text-secondary mb-5" style="line-height: 1.8;">
+                        Education is the light that dispels darkness and opens doors of opportunity—especially for children born into hardship. Our journey is guided by a simple belief: when we educate a child, we empower an entire family and shape a stronger nation.
+                    </p>
+
+                    <div class="signature-block">
+                        <div class="signature-line"></div>
+                        <div>
+                            <h5 class="display-font fw-bold mb-0" style="color: var(--primary-dark); font-size: 1.15rem;">Dr. Khurshid Hussain Syed</h5>
                             <p class="text-muted small mb-0 fw-semibold">Managing Trustee & Visionary</p>
                         </div>
-                        <div class="ms-auto">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/3/3a/Jon_Kirsch_Signature.png" 
-                                 alt="Signature" class="opacity-25" style="height: 50px; filter: grayscale(1) invert(1);">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== TEAM ========== -->
+<section id="team" class="team-section section-padding">
+    <div class="container">
+        <div class="text-center mb-5" data-aos="fade-up">
+            <div class="section-label mx-auto">
+                <i class="bi bi-shield-check"></i> Governance
+            </div>
+            <h2 class="section-title">Board of Members</h2>
+            <p class="section-subtitle mx-auto">The dedicated leaders guiding our mission toward community empowerment.</p>
+        </div>
+
+        <div class="row g-4 mb-5">
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="team-card">
+                    <div class="team-icon-wrap"><i class="bi bi-person-badge-fill"></i></div>
+                    <h5 class="fw-bold mb-1">Dr. Khurshid Hussain Syed</h5>
+                    <small class="text-uppercase fw-bold" style="color: var(--accent-dark); letter-spacing: 1px; font-size: 0.7rem;">Founder / Trustee</small>
+                </div>
+            </div>
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="team-card">
+                    <div class="team-icon-wrap"><i class="bi bi-person-check-fill"></i></div>
+                    <h5 class="fw-bold mb-1">Shabana Raish Kadri</h5>
+                    <small class="text-uppercase fw-bold" style="color: var(--accent-dark); letter-spacing: 1px; font-size: 0.7rem;">Secretary</small>
+                </div>
+            </div>
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                <div class="team-card">
+                    <div class="team-icon-wrap"><i class="bi bi-award-fill"></i></div>
+                    <h5 class="fw-bold mb-1">Barkatullah Rathod</h5>
+                    <small class="text-uppercase fw-bold" style="color: var(--accent-dark); letter-spacing: 1px; font-size: 0.7rem;">Chairman</small>
+                </div>
+            </div>
+        </div>
+
+        <div class="trustees-grid" data-aos="fade-up" data-aos-delay="100">
+            <h5 class="fw-bold mb-4 d-flex align-items-center gap-3">
+                <span style="width: 36px; height: 36px; background: linear-gradient(135deg, var(--primary), var(--primary-light)); border-radius: 10px; display: inline-flex; align-items: center; justify-content: center; color: white; font-size: 0.9rem;">
+                    <i class="bi bi-people-fill"></i>
+                </span>
+                Dedicated Trustees
+            </h5>
+            <div class="d-flex flex-wrap gap-2">
+                <span class="trustee-chip"><i class="bi bi-circle-fill"></i> Aadil Hussain Syed</span>
+                <span class="trustee-chip"><i class="bi bi-circle-fill"></i> Sikandarkhan Ghori</span>
+                <span class="trustee-chip"><i class="bi bi-circle-fill"></i> Shabbir Hussain Ghori</span>
+                <span class="trustee-chip"><i class="bi bi-circle-fill"></i> Ikbal Hussain Rathod</span>
+                <span class="trustee-chip"><i class="bi bi-circle-fill"></i> Nazir Hussain Rathod</span>
+                <span class="trustee-chip"><i class="bi bi-circle-fill"></i> Liyakat Ali Thakor</span>
+                <span class="trustee-chip"><i class="bi bi-circle-fill"></i> Yasinkha Najarkha Thakor</span>
+                <span class="trustee-chip"><i class="bi bi-circle-fill"></i> Nasruddin Bapusaheb Rathod</span>
+                <span class="trustee-chip"><i class="bi bi-circle-fill"></i> Sabirkha Akbarkha Rathod</span>
+                <span class="trustee-chip"><i class="bi bi-circle-fill"></i> Soyeb Mahammad Malek</span>
+                <span class="trustee-chip"><i class="bi bi-circle-fill"></i> Jafrullakha Ghori</span>
+                <span class="trustee-chip"><i class="bi bi-circle-fill"></i> Hanif Mahammad Ghori</span>
+                <span class="trustee-chip"><i class="bi bi-circle-fill"></i> Ikram Ali Sabir Ali Khan</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== FINANCIALS ========== -->
+<section id="financials" class="financials-section section-padding">
+    <div class="container">
+        <div class="text-center mb-5" data-aos="fade-up">
+            <div class="section-label mx-auto">
+                <i class="bi bi-graph-up-arrow"></i> Transparency
+            </div>
+            <h2 class="section-title">Financial Summaries</h2>
+            <p class="section-subtitle mx-auto">Every rupee accounted for — complete audited records for public review.</p>
+        </div>
+
+        <div class="row g-4 mb-5">
+            <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+                <div class="fin-card">
+                    <div class="fin-card-header">
+                        <h6 class="fw-bold mb-0 d-flex align-items-center gap-2">
+                            <span style="width: 8px; height: 8px; background: var(--primary); border-radius: 50%;"></span>
+                            Income — FY 2025-26
+                        </h6>
+                        <span class="badge" style="background: rgba(6,95,70,0.1); color: var(--primary); font-weight: 700; font-size: 0.7rem;">Audited</span>
+                    </div>
+                    <div class="p-4">
+                        <div class="fin-row"><span class="label">Opening Bank Balance</span><span class="value" style="color: var(--text);">₹12,12,214</span></div>
+                        <div class="fin-row"><span class="label">Opening Cash Balance</span><span class="value" style="color: var(--text);">₹15,200</span></div>
+                        <div class="fin-row"><span class="label">Donations Received</span><span class="value" style="color: var(--text);">₹8,78,485</span></div>
+                        <div class="fin-total">
+                            <span class="label">Total Income</span>
+                            <span class="value" style="color: var(--primary); font-size: 1.2rem;">₹21,05,899</span>
                         </div>
                     </div>
                 </div>
             </div>
 
+            <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
+                <div class="fin-card">
+                    <div class="fin-card-header">
+                        <h6 class="fw-bold mb-0 d-flex align-items-center gap-2">
+                            <span style="width: 8px; height: 8px; background: #dc2626; border-radius: 50%;"></span>
+                            Expenditure — FY 2025-26
+                        </h6>
+                        <span class="badge" style="background: rgba(220,38,38,0.1); color: #dc2626; font-weight: 700; font-size: 0.7rem;">Verified</span>
+                    </div>
+                    <div class="p-4">
+                        <div class="fin-row"><span class="label">Assistance to Widows</span><span class="value" style="color: var(--text);">₹90,000</span></div>
+                        <div class="fin-row"><span class="label">Education Assistance</span><span class="value" style="color: var(--text);">₹50,300</span></div>
+                        <div class="fin-row"><span class="label">Donation Expenses</span><span class="value" style="color: var(--text);">₹2,11,000</span></div>
+                        <div class="fin-row"><span class="label">Assistance to Needy Farmers</span><span class="value" style="color: var(--text);">₹35,000</span></div>
+                        <div class="fin-total" style="background: linear-gradient(135deg, rgba(220,38,38,0.05), rgba(220,38,38,0.02));">
+                            <span class="label">Total Expenditure</span>
+                            <span class="value" style="color: #dc2626; font-size: 1.2rem;">₹21,05,859</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
-</section>
 
-<section id="team" class="py-5">
-    <div class="container">
-        <div class="text-center mb-5" data-aos="fade-up">
-            <span class="section-tag">Governance</span>
-            <h2 class="display-5 fw-bold">Board of Members</h2>
-        </div>
         <div class="row g-4">
-            <div class="col-md-4">
-                <div class="card-modern p-4 text-center border-bottom border-success border-4">
-                    <div class="h2 text-success mb-3"><i class="bi bi-person-badge"></i></div>
-                    <h5 class="fw-bold mb-1">Dr. Khurshid Hussain Syed</h5>
-                    <small class="text-uppercase text-muted fw-bold">Founder / Trustee</small>
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="fy-card">
+                    <div class="text-muted small fw-bold text-uppercase mb-1" style="letter-spacing: 1px;">FY 2024-25</div>
+                    <div class="fy-amount">₹15,84,663</div>
+                    <div class="text-muted small">Closing Balance: ₹12,12,214</div>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="card-modern p-4 text-center border-bottom border-success border-4">
-                    <div class="h2 text-success mb-3"><i class="bi bi-person-check"></i></div>
-                    <h5 class="fw-bold mb-1">Shabana Raish Kadri</h5>
-                    <small class="text-uppercase text-muted fw-bold">Secretary</small>
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="fy-card">
+                    <div class="text-muted small fw-bold text-uppercase mb-1" style="letter-spacing: 1px;">FY 2023-24</div>
+                    <div class="fy-amount">₹11,18,112</div>
+                    <div class="text-muted small">Scholarships: ₹96,800</div>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="card-modern p-4 text-center border-bottom border-success border-4">
-                    <div class="h2 text-success mb-3"><i class="bi bi-award"></i></div>
-                    <h5 class="fw-bold mb-1">Barkatullah Rathod</h5>
-                    <small class="text-uppercase text-muted fw-bold">Chairman</small>
-                </div>
-            </div>
-        </div>
-
-        <div class="mt-5 p-4 p-md-5 bg-white card-modern" data-aos="fade-up">
-            <h5 class="fw-bold mb-4 d-flex align-items-center"><i class="bi bi-people-fill me-3 text-success fs-3"></i>Dedicated Trustees</h5>
-            <div class="row g-3">
-                <div class="col-md-4 col-6 small fw-medium text-muted">• Aadil Hussain Syed</div>
-                <div class="col-md-4 col-6 small fw-medium text-muted">• Sikandarkhan Ghori</div>
-                <div class="col-md-4 col-6 small fw-medium text-muted">• Shabbir Hussain Ghori</div>
-                <div class="col-md-4 col-6 small fw-medium text-muted">• Ikbal Hussain Rathod</div>
-                <div class="col-md-4 col-6 small fw-medium text-muted">• Nazir Hussain Rathod</div>
-                <div class="col-md-4 col-6 small fw-medium text-muted">• Liyakat Ali Thakor</div>
-                <div class="col-md-4 col-6 small fw-medium text-muted">• Yasinkha Najarkha Thakor</div>
-                <div class="col-md-4 col-6 small fw-medium text-muted">• Nasruddin Bapusaheb Rathod</div>
-                <div class="col-md-4 col-6 small fw-medium text-muted">• Sabirkha Akbarkha Rathod</div>
-                <div class="col-md-4 col-6 small fw-medium text-muted">• Soyeb Mahammad Malek</div>
-                <div class="col-md-4 col-6 small fw-medium text-muted">• Jafrullakha Ghori</div>
-                <div class="col-md-4 col-6 small fw-medium text-muted">• Hanif Mahammad Ghori</div>
-                <div class="col-md-4 col-6 small fw-medium text-muted">• Ikram Ali Sabir Ali Khan</div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section id="financials" class="py-5 bg-light">
-    <div class="container">
-        <div class="text-center mb-5">
-            <span class="section-tag">Transparency</span>
-            <h2 class="display-5 fw-bold">Financial Summaries</h2>
-        </div>
-
-        <div class="card-modern p-4 p-lg-5 mb-5" data-aos="fade-up">
-            <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-4 border-bottom pb-3 gap-2">
-                <h4 class="fw-bold mb-0">Financial Year 2025-26</h4>
-                <span class="badge bg-success text-white">Audited Report</span>
-            </div>
-            <div class="row g-4">
-                <div class="col-lg-6">
-                    <h6 class="text-success fw-bold text-uppercase small mb-4">Income Breakdown</h6>
-                    <div class="table-responsive">
-                        <table class="table table-borderless table-sm">
-                            <tr class="border-bottom-subtle"><td>Opening Bank Balance</td><td class="text-end fw-bold">₹12,12,214.00</td></tr>
-                            <tr class="border-bottom-subtle"><td>Opening Cash Balance</td><td class="text-end fw-bold">₹15,200.00</td></tr>
-                            <tr class="border-bottom-subtle"><td>Donations</td><td class="text-end fw-bold">₹8,78,485.00</td></tr>
-                            <tr class="table-light"><td><strong>Total Income</strong></td><td class="text-end text-success fs-5"><strong>₹21,05,899.00</strong></td></tr>
-                        </table>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <h6 class="text-danger fw-bold text-uppercase small mb-4">Expenditure Breakdown</h6>
-                    <div class="table-responsive">
-                        <table class="table table-borderless table-sm">
-                            <tr class="border-bottom-subtle"><td>Assistance to Widows</td><td class="text-end fw-bold">₹90,000.00</td></tr>
-                            <tr class="border-bottom-subtle"><td>Education Assistance</td><td class="text-end fw-bold">₹50,300.00</td></tr>
-                            <tr class="border-bottom-subtle"><td>Donation Expenses</td><td class="text-end fw-bold">₹2,11,000.00</td></tr>
-                            <tr class="border-bottom-subtle"><td>Assistance to Needy Farmers</td><td class="text-end fw-bold">₹35,000.00</td></tr>
-                            <tr class="table-light"><td><strong>Total Expenditure</strong></td><td class="text-end text-danger fs-5"><strong>₹21,05,859.00</strong></td></tr>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row g-4" data-aos="fade-up">
-            <div class="col-md-4">
-                <div class="card-modern p-4 text-center">
-                    <h5 class="fw-bold">FY 2024-25</h5>
-                    <p class="fs-4 fw-bold text-success mb-1">₹15,84,663.00</p>
-                    <small class="text-muted">Closing Balance: ₹12,12,214.00</small>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card-modern p-4 text-center">
-                    <h5 class="fw-bold">FY 2023-24</h5>
-                    <p class="fs-4 fw-bold text-success mb-1">₹11,18,112.00</p>
-                    <small class="text-muted">Scholarships: ₹96,800.00</small>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card-modern p-4 text-center">
-                    <h5 class="fw-bold">FY 2022-23</h5>
-                    <p class="fs-4 fw-bold text-success mb-1">₹8,01,560.00</p>
-                    <small class="text-muted">Widow Support: ₹3,25,000.00</small>
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                <div class="fy-card">
+                    <div class="text-muted small fw-bold text-uppercase mb-1" style="letter-spacing: 1px;">FY 2022-23</div>
+                    <div class="fy-amount">₹8,01,560</div>
+                    <div class="text-muted small">Widow Support: ₹3,25,000</div>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-<section id="donors" class="py-5 bg-white">
+<!-- ========== DONORS ========== -->
+<section id="donors" class="donors-section section-padding">
     <div class="container">
-        <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-5 gap-4">
-            <div>
-                <span class="section-tag">Annexure-A</span>
-                <h2 class="display-5 fw-bold mt-1">Donations Received</h2>
-                <p class="text-muted mb-0"><i class="bi bi-calendar-event me-2"></i>Month of Ramdan-2026</p>
+        <div class="row align-items-end mb-5 g-4">
+            <div class="col-lg-6" data-aos="fade-right">
+                <div class="section-label">
+                    <i class="bi bi-list-check"></i> Annexure-A
+                </div>
+                <h2 class="section-title mb-2">Donations Received</h2>
+                <p class="text-secondary mb-0">
+                    <i class="bi bi-calendar3 me-2"></i>Month of Ramadan-2026
+                </p>
             </div>
-            <div class="position-relative w-100" style="max-width: 400px;">
-                <i class="bi bi-search position-absolute top-50 start-0 translate-middle-y ms-3 text-muted"></i>
-                <input type="text" id="donorSearch" class="form-control rounded-pill ps-5 pe-4" placeholder="Search name or city...">
+            <div class="col-lg-6 text-lg-end" data-aos="fade-left">
+                <div class="search-box ms-lg-auto">
+                    <i class="bi bi-search"></i>
+                    <input type="text" id="donorSearch" placeholder="Search name or city...">
+                </div>
             </div>
         </div>
 
-        <div class="card-modern overflow-hidden">
+        <div class="donor-table-wrap" data-aos="fade-up">
             <div class="table-responsive">
-                <table class="table table-hover align-middle mb-0" id="donorTable">
+                <table class="table" id="donorTable">
                     <thead>
                         <tr>
-                            <th class="ps-4 py-3">Date</th>
-                            <th class="py-3">Donor Name</th>
-                            <th class="py-3">Location</th>
-                            <th class="text-end pe-4 py-3">Amount (₹)</th>
+                            <th style="padding-left: 20px;">Date</th>
+                            <th>Donor Name</th>
+                            <th>Location</th>
+                            <th style="text-align: right; padding-right: 20px;">Amount (₹)</th>
                         </tr>
                     </thead>
                     <tbody id="donorBody"></tbody>
                 </table>
             </div>
         </div>
-        <div class="mt-4 text-end">
-            <div class="d-inline-block bg-success text-white p-3 rounded-4 px-4 shadow-sm">
-                <small class="text-uppercase fw-bold d-block opacity-75">Total Recorded</small>
-                <h3 id="total_don" class="fw-bold mb-0"></h3>
+
+        <div class="mt-4 d-flex justify-content-end" data-aos="fade-up" data-aos-delay="100">
+            <div class="total-badge">
+                <span class="label">Total Recorded</span>
+                <span class="amount" id="total_don"></span>
             </div>
         </div>
     </div>
 </section>
 
-<section id="support" class="py-5">
+<!-- ========== SUPPORT / BANK ========== -->
+<section id="support" class="support-section section-padding">
     <div class="container">
-        <div class="bank-details p-4 p-lg-5 shadow-xl" data-aos="zoom-in">
-            <div class="row align-items-center g-4">
-                <div class="col-lg-5">
-                    <h2 class="display-4 fw-bold mb-3 text-white">Support Our Mission</h2>
-                    <p class="opacity-75 fs-5 text-white">Your contribution fuels sustainable development and educational growth in our rural communities.</p>
-                </div>
-                <div class="col-lg-7">
-                    <div class="row g-3">
-                        <div class="col-md-5">
-                            <div class="p-4 rounded-4 bg-white text-dark text-center h-100 d-flex flex-column justify-content-between shadow-lg">
-                                <div>
-                                    <h6 class="text-success fw-bold small mb-3">Scan to Pay</h6>
-                                    <div class="bg-light p-2 rounded-3 mb-3 mx-auto" style="width: 160px;">
-                                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=upi://pay?pa=37257825890@sbi&pn=Sadbhavana%20Sarvajanik%20Foundation&cu=INR" class="img-fluid" alt="QR Code">
-                                    </div>
-                                </div>
-                                <a href="upi://pay?pa=37257825890@sbi&pn=Sadbhavana%20Sarvajanik%20Foundation&cu=INR" class="btn btn-success rounded-pill fw-bold w-100">Pay via UPI</a>
-                                <small class="mt-2 text-muted">UPI: 37257825890@sbi</small>
-                            </div>
+        <div class="bank-card" data-aos="fade-up">
+            <div class="bank-inner">
+                <div class="row g-4 align-items-center">
+                    <div class="col-lg-4 mb-4 mb-lg-0">
+                        <h2 class="display-font text-white mb-3" style="font-size: clamp(1.8rem, 3vw, 2.5rem); line-height: 1.15;">
+                            Support Our <span style="color: var(--accent);">Mission</span>
+                        </h2>
+                        <p style="color: rgba(255,255,255,0.6); line-height: 1.7; font-size: 0.95rem;">
+                            Your contribution fuels sustainable development and educational growth in rural communities. Every donation makes a difference.
+                        </p>
+                        <div class="glass-pill d-inline-flex gap-2 mt-3">
+                            <i class="bi bi-shield-check" style="color: var(--accent);"></i>
+                            80G Tax Exemption Available
                         </div>
-                        <div class="col-md-7">
-                            <div class="p-4 rounded-4 bg-white text-dark h-100 shadow-lg">
-                                <h6 class="text-success fw-bold small mb-4">Bank Transfer Details</h6>
-                                <div class="mb-3">
-                                    <label class="text-muted small d-block">ACCOUNT HOLDER</label>
-                                    <span class="fw-bold">Sadbhavana Sarvajanik Foundation</span>
-                                </div>
-                                <div class="row mb-3">
-                                    <div class="col-6">
-                                        <label class="text-muted small d-block">BANK</label>
-                                        <span class="fw-bold">SBI, Tilakwada</span>
+                    </div>
+
+                    <div class="col-lg-8">
+                        <div class="row g-3">
+                            <div class="col-md-5">
+                                <div class="qr-box">
+                                    <div class="text-success fw-bold small text-uppercase mb-2" style="letter-spacing: 1px;">Scan to Pay</div>
+                                    <div class="qr-image-wrap">
+                                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=upi://pay?pa=37257825890@sbi&pn=Sadbhavana%20Sarvajanik%20Foundation&cu=INR" alt="UPI QR Code" style="width: 140px;">
                                     </div>
-                                    <div class="col-6">
-                                        <label class="text-muted small d-block">IFSC</label>
-                                        <span class="fw-bold text-success">SBIN0011039</span>
-                                    </div>
+                                    <a href="upi://pay?pa=37257825890@sbi&pn=Sadbhavana%20Sarvajanik%20Foundation&cu=INR" class="btn-upi mt-2">
+                                        <i class="bi bi-smartphone"></i> Pay via UPI
+                                    </a>
+                                    <div class="text-muted small mt-2" style="font-size: 0.7rem;">UPI: 37257825890@sbi</div>
                                 </div>
-                                <div class="p-3 bg-light rounded-3 border-start border-4 border-success">
-                                    <label class="text-muted small d-block">ACCOUNT NUMBER</label>
-                                    <span class="fs-4 fw-bolder">37257825890</span>
+                            </div>
+
+                            <div class="col-md-7">
+                                <div class="bank-details-box">
+                                    <div class="text-success fw-bold small text-uppercase mb-3" style="letter-spacing: 1px;">Bank Transfer</div>
+                                    <div class="bank-field">
+                                        <div class="field-label">Account Holder</div>
+                                        <div class="field-value">Sadbhavana Sarvajanik Foundation</div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <div class="bank-field">
+                                                <div class="field-label">Bank</div>
+                                                <div class="field-value">SBI, Tilakwada</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="bank-field">
+                                                <div class="field-label">IFSC Code</div>
+                                                <div class="field-value" style="color: var(--primary);">SBIN0011039</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="account-highlight">
+                                        <div class="field-label">Account Number</div>
+                                        <div class="field-value">37257825890</div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -544,118 +432,149 @@ h1, h2, h3, .founder-name {
         </div>
     </div>
 </section>
-<section id="contact" class="py-5 bg-light">
-    <div class="container py-4">
+
+<!-- ========== CONTACT ========== -->
+<section id="contact" class="contact-section section-padding">
+    <div class="container">
         <div class="text-center mb-5" data-aos="fade-up">
-            <span class="section-tag">Get in Touch</span>
-            <h2 class="display-5 fw-bold">Contact Details</h2>
-            <p class="text-muted">Reach out to us for any queries regarding our initiatives or donations.</p>
+            <div class="section-label mx-auto">
+                <i class="bi bi-geo-alt-fill"></i> Get in Touch
+            </div>
+            <h2 class="section-title">Contact Details</h2>
+            <p class="section-subtitle mx-auto">Reach out for queries about our initiatives, donations, or partnership opportunities.</p>
         </div>
 
         <div class="row g-4 mb-5">
             <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
-                <div class="contact-info-card">
-                    <div class="icon-box">
-                        <i class="bi bi-geo-alt-fill"></i>
-                    </div>
-                    <h5 class="fw-bold">Our Office</h5>
-                    <p class="text-muted mb-0">Tilakwada, District: Narmada,<br>Gujarat - 391120, India.</p>
+                <div class="contact-card">
+                    <div class="contact-icon"><i class="bi bi-geo-alt-fill"></i></div>
+                    <h5 class="fw-bold mb-2">Our Office</h5>
+                    <p class="text-secondary small mb-0" style="line-height: 1.7;">
+                        Tilakwada, District: Narmada,<br>Gujarat - 391120, India
+                    </p>
                 </div>
             </div>
-
             <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
-                <div class="contact-info-card">
-                    <div class="icon-box">
-                        <i class="bi bi-telephone-fill"></i>
-                    </div>
-                    <h5 class="fw-bold">Call Us</h5>
-                    <p class="text-muted mb-1">
-                        <a href="tel:+919106685647" class="contact-link">+91 91066 85647</a>
+                <div class="contact-card">
+                    <div class="contact-icon"><i class="bi bi-telephone-fill"></i></div>
+                    <h5 class="fw-bold mb-2">Call Us</h5>
+                    <p class="mb-1">
+                        <a href="tel:+919106685647" class="contact-link small">+91 91066 85647</a>
                     </p>
-                    <p class="text-muted mb-0">
-                        <a href="tel:+919913121871" class="contact-link">+91 99131 21871</a>
+                    <p class="mb-0">
+                        <a href="tel:+919913121871" class="contact-link small">+91 99131 21871</a>
                     </p>
                 </div>
             </div>
-
             <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
-                <div class="contact-info-card">
-                    <div class="icon-box">
-                        <i class="bi bi-envelope-heart-fill"></i>
-                    </div>
-                    <h5 class="fw-bold">Email Support</h5>
-                    <p class="text-muted mb-1">
-                        <a href="mailto:info@ssffoundation.org" class="contact-link">info@ssffoundation.org</a>
+                <div class="contact-card">
+                    <div class="contact-icon"><i class="bi bi-envelope-heart-fill"></i></div>
+                    <h5 class="fw-bold mb-2">Email Support</h5>
+                    <p class="mb-1">
+                        <a href="mailto:info@ssffoundation.org" class="contact-link small">info@ssffoundation.org</a>
                     </p>
-                    <p class="text-muted mb-0">
-                        <a href="mailto:support@ssffoundation.org" class="contact-link">support@ssffoundation.org</a>
+                    <p class="mb-0">
+                        <a href="mailto:support@ssffoundation.org" class="contact-link small">support@ssffoundation.org</a>
                     </p>
                 </div>
             </div>
         </div>
 
-        <div class="row" data-aos="zoom-in">
-            <div class="col-12">
-                <div class="map-container">
-                    <iframe 
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14781.996162231575!2d73.6148383!3d21.921356!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395fc04318c39387%3A0xc397262f30554109!2sTilakwada%2C%20Gujarat!5e0!3m2!1sen!2sin!4v1715000000000!5m2!1sen!2sin" 
-                        width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy">
-                    </iframe>
-                </div>
+        <div data-aos="zoom-in" data-aos-delay="100">
+            <div class="map-frame">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14781.996162231575!2d73.6148383!3d21.921356!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395fc04318c39387%3A0xc397262f30554109!2sTilakwada%2C%20Gujarat!5e0!3m2!1sen!2sin!4v1715000000000!5m2!1sen!2sin" 
+                    width="100%" height="400" style="border:0; display: block;" allowfullscreen="" loading="lazy">
+                </iframe>
             </div>
         </div>
     </div>
 </section>
-<footer class="py-5 bg-white border-top">
-    <div class="container text-center text-lg-start">
-        <div class="row g-4 align-items-center">
-            <div class="col-lg-4 d-flex justify-content-center justify-content-lg-start align-items-center gap-3">
-                <svg class="brand-symbol" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="50" cy="50" r="50" fill="#f1f5f9"/>
-                    <path d="M43.23 68.1C47.85 71.02 53.68 71.32 58.5 68.86C61.34 67.4 63.4 65.03 64.67 62.13C64.91 61.59 64.53 60.98 63.95 60.98H56.51C56.24 60.98 56.02 61.16 55.93 61.41C55.43 62.72 54.49 63.79 53.22 64.45C51.13 65.51 48.61 65.38 46.61 64.12C44.61 62.86 43.43 60.67 43.43 58.33V53.22H63.89C64.5 53.22 65 52.72 65 52.11C65 51.5 64.5 51 63.89 51H43.43V43.1C43.43 40.76 44.61 38.57 46.61 37.31C48.61 36.05 51.13 35.92 53.22 36.98C54.49 37.64 55.43 38.71 55.93 40.02C56.02 40.27 56.24 40.45 56.51 40.45H63.95C64.53 40.45 64.91 39.84 64.67 39.3C63.4 36.4 61.34 34.03 58.5 32.57C53.68 30.11 47.85 30.41 43.23 33.33C38.61 36.25 35.88 41.25 35.88 46.51V54.91C35.88 60.18 38.61 65.18 43.23 68.1Z" fill="#065F46"/>
-                    <path d="M54.71 20.35C52.13 20.35 50 22.48 50 25.06C50 27.64 52.13 29.77 54.71 29.77C57.29 29.77 59.42 27.64 59.42 25.06C59.42 22.48 57.29 20.35 54.71 20.35Z" fill="#A3E635"/>
-                    <path d="M74.39 42.17C71.81 42.17 69.68 44.3 69.68 46.88C69.68 49.46 71.81 51.59 74.39 51.59C76.97 51.59 79.1 49.46 79.1 46.88C79.1 44.3 76.97 42.17 74.39 42.17Z" fill="#A3E635"/>
-                    <path d="M54.71 63.98C52.13 63.98 50 66.11 50 68.69C50 71.27 52.13 73.4 54.71 73.4C57.29 73.4 59.42 71.27 59.42 68.69C59.42 66.11 57.29 63.98 54.71 63.98Z" fill="#A3E635"/>
-                </svg>
-                <div class="text-start">
-                    <h5 class="fw-bold text-emerald mb-1">SSF Foundation</h5>
-                    <p class="text-muted small mb-0">Tilakwada, Narmada,<br>Gujarat-391120, India.</p>
+
+<!-- ========== FOOTER ========== -->
+<footer class="footer-main pt-5 pb-4">
+    <div class="container">
+        <div class="row g-4 pb-4">
+            <div class="col-lg-4">
+                <div class="d-flex align-items-center gap-3 mb-3">
+                    <div class="footer-brand-icon">
+                        <svg width="20" height="20" viewBox="0 0 100 100" fill="none">
+                            <path d="M43.23 68.1C47.85 71.02 53.68 71.32 58.5 68.86C61.34 67.4 63.4 65.03 64.67 62.13C64.91 61.59 64.53 60.98 63.95 60.98H56.51C56.24 60.98 56.02 61.16 55.93 61.41C55.43 62.72 54.49 63.79 53.22 64.45C51.13 65.51 48.61 65.38 46.61 64.12C44.61 62.86 43.43 60.67 43.43 58.33V53.22H63.89C64.5 53.22 65 52.72 65 52.11C65 51.5 64.5 51 63.89 51H43.43V43.1C43.43 40.76 44.61 38.57 46.61 37.31C48.61 36.05 51.13 35.92 53.22 36.98C54.49 37.64 55.43 38.71 55.93 40.02C56.02 40.27 56.24 40.45 56.51 40.45H63.95C64.53 40.45 64.91 39.84 64.67 39.3C63.4 36.4 61.34 34.03 58.5 32.57C53.68 30.11 47.85 30.41 43.23 33.33C38.61 36.25 35.88 41.25 35.88 46.51V54.91C35.88 60.18 38.61 65.18 43.23 68.1Z" fill="white"/>
+                            <path d="M54.71 20.35C52.13 20.35 50 22.48 50 25.06C50 27.64 52.13 29.77 54.71 29.77C57.29 29.77 59.42 27.64 59.42 25.06C59.42 22.48 57.29 20.35 54.71 20.35Z" fill="#a3e635"/>
+                            <path d="M74.39 42.17C71.81 42.17 69.68 44.3 69.68 46.88C69.68 49.46 71.81 51.59 74.39 51.59C76.97 51.59 79.1 49.46 79.1 46.88C79.1 44.3 76.97 42.17 74.39 42.17Z" fill="#a3e635"/>
+                            <path d="M54.71 63.98C52.13 63.98 50 66.11 50 68.69C50 71.27 52.13 73.4 54.71 73.4C57.29 73.4 59.42 71.27 59.42 68.69C59.42 66.11 57.29 63.98 54.71 63.98Z" fill="#a3e635"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <div class="text-white fw-bold" style="font-size: 0.95rem;">SSF Foundation</div>
+                        <div style="font-size: 0.65rem; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 1px;">Est. for Change</div>
+                    </div>
+                </div>
+                <p style="font-size: 0.85rem; line-height: 1.7; max-width: 320px;">
+                    Tilakwada, Narmada, Gujarat-391120, India. <br>Building resilient communities through education and empowerment.
+                </p>
+            </div>
+
+            <div class="col-lg-2 col-md-4">
+                <h6 class="text-white fw-bold small mb-3">Navigate</h6>
+                <div class="d-flex flex-column gap-2">
+                    <a href="#home" class="footer-link">Home</a>
+                    <a href="#message" class="footer-link">Message</a>
+                    <a href="#team" class="footer-link">Our Team</a>
+                    <a href="#financials" class="footer-link">Financials</a>
                 </div>
             </div>
-            <div class="col-lg-4 text-center border-lg-start border-lg-end">
-                <h6 class="fw-bold small mb-3">Hotlines</h6>
-                <p class="mb-1 fw-bold">Rathod Barkatulla: <span class="text-success">+91 9106685647</span></p>
-                <p class="mb-0 fw-bold">Ghori Sikandarkhan: <span class="text-success">+91 9913121871</span></p>
+
+            <div class="col-lg-3 col-md-4">
+                <h6 class="text-white fw-bold small mb-3">Hotlines</h6>
+                <div class="d-flex flex-column gap-2">
+                    <div>
+                        <div class="text-white small fw-semibold">Rathod Barkatullah</div>
+                        <a href="tel:+919106685647" class="footer-link" style="color: var(--accent);">+91 9106685647</a>
+                    </div>
+                    <div>
+                        <div class="text-white small fw-semibold">Ghori Sikandarkhan</div>
+                        <a href="tel:+919913121871" class="footer-link" style="color: var(--accent);">+91 9913121871</a>
+                    </div>
+                </div>
             </div>
-            <div class="col-lg-4 text-lg-end">
-                <p class="small text-muted mb-0">© 2026 Sadbhavana Sarvajanik Foundation.</p>
+
+            <div class="col-lg-3 col-md-4">
+                <h6 class="text-white fw-bold small mb-3">Quick Donate</h6>
+                <p style="font-size: 0.8rem; line-height: 1.6;">
+                    Scan the QR code or transfer directly to:<br>
+                    <span class="text-white fw-bold">37257825890</span><br>
+                    <span style="color: var(--accent); font-size: 0.75rem;">SBI · IFSC: SBIN0011039</span>
+                </p>
+                <a href="#support" class="btn-upi mt-2" style="font-size: 0.8rem; padding: 10px 20px; width: auto; display: inline-flex;">
+                    <i class="bi bi-heart-fill"></i> Donate Now
+                </a>
             </div>
+        </div>
+
+        <div class="footer-divider pt-4 d-flex flex-column flex-md-row justify-content-between align-items-center gap-2">
+            <p class="mb-0" style="font-size: 0.78rem;">© 2026 Sadbhavana Sarvajanik Foundation. All rights reserved.</p>
+            <p class="mb-0" style="font-size: 0.78rem;">
+                Made with <i class="bi bi-heart-fill" style="color: #dc2626; font-size: 0.65rem;"></i> for a better tomorrow
+            </p>
         </div>
     </div>
 </footer>
 
+<!-- Scroll to Top -->
+<button class="scroll-top-btn" id="scrollTopBtn" aria-label="Scroll to top">
+    <i class="bi bi-arrow-up"></i>
+</button>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
-    AOS.init({ duration: 1000, once: true });
-    
-   // Smooth scroll for nav links and auto-close mobile menu
-    const navLinks = document.querySelectorAll('.nav-link');
-    const menuToggle = document.getElementById('navbarNav');
-    const bsCollapse = new bootstrap.Collapse(menuToggle, {toggle:false});
-    navLinks.forEach((l) => {
-        l.addEventListener('click', () => { if(window.innerWidth < 992) { bsCollapse.hide(); } });
-    });
+    // ========== INIT AOS ==========
+    AOS.init({ duration: 800, once: true, easing: 'ease-out-cubic' });
 
-    // Add scrolled class to body for potential nav effects
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            document.body.classList.add('scrolled');
-        } else {
-            document.body.classList.remove('scrolled');
-        }
-    });
+ 
 </script>
+<script src="./assets/js/script.js"></script>
 <script src="doner.js"></script>
 </body>
 </html>
