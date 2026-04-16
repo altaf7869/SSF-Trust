@@ -87,22 +87,22 @@
     .navbar-brand-wrap {
         display: flex;
         align-items: center;
-        gap: 10px;
+        gap: 4px;
         text-decoration: none;
         transition: var(--transition);
     }
     .navbar-brand-wrap:hover { opacity: 0.8; }
 
     .brand-icon {
-        width: 40px;
-        height: 40px;
-        background: linear-gradient(135deg, var(--primary), var(--primary-light));
+        width: 52px;
+        height: 52px;
+        /* background: linear-gradient(135deg, var(--primary), var(--primary-light)); */
         border-radius: 12px;
         display: flex;
         align-items: center;
         justify-content: center;
         flex-shrink: 0;
-        box-shadow: 0 4px 12px rgba(6,95,70,0.25);
+        /* box-shadow: 0 4px 12px rgba(6,95,70,0.25); */
     }
 
     .brand-name {
@@ -604,6 +604,7 @@
         line-height: 1.85;
         color: var(--text-secondary);
         font-weight: 400;
+        
     }
 
     .signature-block {
@@ -1149,16 +1150,61 @@
         background: linear-gradient(90deg, transparent, rgba(163,230,53,0.3), transparent);
     }
 
-    .footer-brand-icon {
-        width: 44px;
-        height: 44px;
-        background: linear-gradient(135deg, var(--primary), var(--primary-light));
-        border-radius: 12px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-shrink: 0;
+    /* Logo Fix */
+.footer-brand-icon img {
+    width: 130px;
+    height: 130px;
+    object-fit: contain;
+}
+
+/* Mobile Center Alignment */
+@media (max-width: 768px) {
+
+    /* Center all columns */
+    .footer-main .col-lg-4,
+    .footer-main .col-lg-3,
+    .footer-main .col-lg-2,
+    .footer-main .col-md-4 {
+        text-align: center !important;
     }
+
+    /* Center logo + remove left alignment */
+    .footer-main .d-flex.align-items-center {
+        justify-content: center !important;
+    }
+
+    /* Center paragraph text */
+    .footer-main p {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    /* Center links */
+    .footer-main .footer-link {
+        display: inline-block;
+    }
+
+    /* Hotline section center */
+    .footer-main .d-flex.flex-column {
+        align-items: center;
+    }
+
+    /* Button center */
+    .btn-upi {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    /* Bottom footer center */
+    .footer-divider {
+        text-align: center;
+    }
+
+    /* Fix max-width text issue */
+    .footer-main p[style*="max-width"] {
+        max-width: 100% !important;
+    }
+}
 
     .footer-link {
         color: rgba(255,255,255,0.5);
