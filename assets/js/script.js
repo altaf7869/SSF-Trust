@@ -127,3 +127,63 @@
         }
     });
 });
+
+// Function to download as Excel
+function downloadExcel() {
+    const table = document.getElementById("donorTable");
+    
+    // Generate workbook from the HTML table
+    const workbook = XLSX.utils.table_to_book(table, { 
+        sheet: "Donors",
+        raw: false // Ensures formatting like the Rupee symbol is treated as text/currency
+    });
+    
+    // Save file
+    XLSX.writeFile(workbook, "Donor_Report.xlsx");
+}
+
+// Function to download as PDF
+function downloadPDF() {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF('p', 'mm', 'a4');
+
+    // Title Configuration
+    doc.setFontSize(18);
+    doc.setTextColor(40);
+    doc.text("Donor List Report", 14, 20);
+
+    // Metadata
+    doc.setFontSize(10);
+    doc.setTextColor(100);
+    const date = new Date().toLocaleDateString();
+    doc.text(`Generated on: ${date}`, 14, 27);
+
+    // AutoTable with Rupee Symbol Fix
+    doc.autoTable({
+        html: '#donorTable',
+        startY: 35,
+        theme: 'striped',
+        headStyles: { 
+            fillColor: [0, 123, 255], 
+            halign: 'center' 
+        },
+        columnStyles: {
+            3: { halign: 'right' } // Aligns Amount column to the right
+        },
+        styles: { 
+            fontSize: 10, 
+            cellPadding: 4,
+            font: "helvetica" 
+        },
+        // CRITICAL: This replaces ₹ with Rs. specifically for the PDF
+        didParseCell: function (data) {
+            if (data.cell.text && data.cell.text.length > 0) {
+                if (data.cell.text[0].includes('₹')) {
+                    data.cell.text[0] = data.cell.text[0].replace('₹', 'Rs. ');
+                }
+            }
+        }
+    });
+
+    doc.save("Donor_Report.pdf");
+}
