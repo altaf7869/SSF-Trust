@@ -87,7 +87,7 @@ const data = [
 
         body.innerHTML = data.map((d) => {
             sum+=Number(d.amt.replace(',',""))
-            console.log(Number(d.amt.replace(',',"")))
+            
             return `
             <tr>
                 <td class="ps-4 text-muted">${d.date}</td>
