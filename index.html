@@ -323,7 +323,7 @@
 </section>
 
 <!-- ========== FINANCIALS ========== -->
-<section id="financials" class="financials-section section-padding">
+<!-- <section id="financials" class="financials-section section-padding">
     <div class="container">
         <div class="text-center mb-5" data-aos="fade-up">
             <div class="section-label mx-auto">
@@ -402,47 +402,85 @@
             </div>
         </div>
     </div>
-</section>
-<!-- <section id="financials" class="py-100 financial-section">
+</section> -->
+
+<section id="financials" class="financials-section py-5">
     <div class="container">
 
+        <!-- Header -->
         <div class="text-center mb-5">
-            <div class="section-badge mb-3">
-                <i class="bi bi-shield-check"></i> Transparency & Trust
-            </div>
+             <div class="section-label">
+                    <i class="bi bi-file-check"></i> Transparency
+                </div>
 
-            <h2 class="fw-bold display-6">
-                Financial <span class="text-primary">Reports</span>
-            </h2>
+            <h2 class="fw-bold display-6">Audit Reports</h2>
 
-            <p class="text-muted mx-auto" style="max-width: 600px;">
-                Every rupee is accounted for with complete transparency. 
-                Access audited reports and download year-wise financial summaries.
+            <p class="text-muted mx-auto" style="max-width: 520px;">
+                Access verified financial statements of our trust. 
+                Download detailed year-wise reports instantly.
             </p>
         </div>
 
-        <div class="row justify-content-center mb-5">
-            <div class="col-lg-8">
-                <div class="highlight-box text-center">
-                    <h5 class="fw-bold mb-2">📊 Public Financial Disclosure</h5>
-                    <p class="text-muted mb-0">
-                        All records are verified and maintained with accountability. 
-                        Download official reports anytime.
-                    </p>
+        <!-- Cards -->
+        <div class="row g-4 justify-content-center">
+
+            <!-- Card -->
+            <div class="col-12 col-sm-6 col-lg-4">
+                <div class="fy-card h-100">
+
+                    <div class="fy-top">
+                        <div class="fy-icon">
+                            <i class="bi bi-file-earmark-bar-graph"></i>
+                        </div>
+
+                        <span class="fy-badge current">Current</span>
+                    </div>
+
+                    <div class="fy-info text-center">
+                        <h5 class="fy-title">Financial Year</h5>
+                        <h3 class="fy-year">2025 - 2026</h3>
+                    </div>
+
+                    <button onclick="downloadFinPDF('2025-26')" class="btn btn-download w-100">
+                        <i class="bi bi-download me-2"></i> Download Report
+                    </button>
+
                 </div>
             </div>
+
+            <!-- Card -->
+            <div class="col-12 col-sm-6 col-lg-4">
+                <div class="fy-card h-100">
+
+                    <div class="fy-top">
+                        <div class="fy-icon secondary">
+                            <i class="bi bi-file-earmark-check"></i>
+                        </div>
+
+                        <span class="fy-badge previous">Previous</span>
+                    </div>
+
+                    <div class="fy-info text-center">
+                        <h5 class="fy-title">Financial Year</h5>
+                        <h3 class="fy-year">2024 - 2025</h3>
+                    </div>
+
+                    <button onclick="downloadFinPDF('2024-25')" class="btn btn-download w-100">
+                        <i class="bi bi-download me-2"></i> Download Report
+                    </button>
+
+                </div>
+            </div>
+
         </div>
-
-        <div class="row g-4 justify-content-center" id="financialCards"></div>
-
     </div>
-</section> -->
+</section>
 
 <!-- ========== DONORS ========== -->
 <section id="donors" class="donors-section section-padding">
     <div class="container">
-        <div class="row align-items-end mb-5 g-4">
-            <div class="col-lg-6" data-aos="fade-right">
+        <div class="row  mb-5 g-4">
+            <div class="col-lg-12" data-aos="fade-right">
                 <div class="section-label">
                     <i class="bi bi-list-check"></i> Annexure-A
                 </div>
@@ -484,13 +522,6 @@
                 </table>
             </div>
         </div>
-
-        <!-- <div class="mt-4 d-flex justify-content-end" data-aos="fade-up" data-aos-delay="100">
-            <div class="total-badge">
-                <span class="label">Total Recorded</span>
-                <span class="amount" id="total_don"></span>
-            </div>
-        </div> -->
     </div>
 </section>
 

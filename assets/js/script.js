@@ -127,6 +127,7 @@
         }
     });
 });
+
 function downloadExcel() {
     const table = document.getElementById("donorTable");
     if (!table || table.rows.length <= 1) {
@@ -182,102 +183,102 @@ function toggleLang(lang) {
     }
 }
 
-// function downloadFinPDF(year) {
-//     const { jsPDF } = window.jspdf;
-//     const doc = new jsPDF();
+function downloadFinPDF(year) {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
 
-//     const data = financialData[year];
+    const data = financialData[year];
 
-//     function formatAmount(val) {
-//         return "Rs. " + Number(val.replace(/,/g, "")).toLocaleString("en-IN");
-//     }
+    function formatAmount(val) {
+        return "Rs. " + Number(val.replace(/,/g, "")).toLocaleString("en-IN");
+    }
 
-//     // ===== HEADER =====
-//     doc.setFont("helvetica", "bold");
-//     doc.setFontSize(16);
-//     doc.text("Sadbhavana Sarvajanik Foundation", 105, 15, { align: "center" });
+    // ===== HEADER =====
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(16);
+    doc.text("Sadbhavana Sarvajanik Foundation", 105, 15, { align: "center" });
 
-//     doc.setFontSize(12);
-//     doc.setFont("helvetica", "normal");
-//     doc.text(`Financial Report - FY ${year}`, 105, 22, { align: "center" });
+    doc.setFontSize(12);
+    doc.setFont("helvetica", "normal");
+    doc.text(`Financial Report - FY ${year}`, 105, 22, { align: "center" });
 
-//     doc.line(20, 25, 190, 25);
+    doc.line(20, 25, 190, 25);
 
-//     // ===== CASE 1: FULL DATA AVAILABLE =====
-//     if (data.income && data.expenses) {
+    // ===== CASE 1: FULL DATA AVAILABLE =====
+    if (data.income && data.expenses) {
 
-//         // Income Table
-//         const incomeBody = data.income.map(i => [
-//             i.label,
-//             formatAmount(i.value)
-//         ]);
+        // Income Table
+        const incomeBody = data.income.map(i => [
+            i.label,
+            formatAmount(i.value)
+        ]);
 
-//         incomeBody.push([
-//             "TOTAL INCOME",
-//             formatAmount(data.total_income)
-//         ]);
+        incomeBody.push([
+            "TOTAL INCOME",
+            formatAmount(data.total_income)
+        ]);
 
-//         doc.autoTable({
-//             startY: 35,
-//             head: [["Income", "Amount"]],
-//             body: incomeBody,
-//             theme: "grid",
-//             columnStyles: {
-//                 0: { halign: "left" },
-//                 1: { halign: "right" }
-//             }
-//         });
+        doc.autoTable({
+            startY: 35,
+            head: [["Income", "Amount"]],
+            body: incomeBody,
+            theme: "grid",
+            columnStyles: {
+                0: { halign: "left" },
+                1: { halign: "right" }
+            }
+        });
 
-//         // Expense Table
-//         const expenseBody = data.expenses.map(e => [
-//             e.label,
-//             formatAmount(e.value)
-//         ]);
+        // Expense Table
+        const expenseBody = data.expenses.map(e => [
+            e.label,
+            formatAmount(e.value)
+        ]);
 
-//         expenseBody.push([
-//             "TOTAL EXPENSE",
-//             formatAmount(data.total_expense)
-//         ]);
+        expenseBody.push([
+            "TOTAL EXPENSE",
+            formatAmount(data.total_expense)
+        ]);
 
-//         doc.autoTable({
-//             startY: doc.lastAutoTable.finalY + 10,
-//             head: [["Expenses", "Amount"]],
-//             body: expenseBody,
-//             theme: "grid",
-//             columnStyles: {
-//                 0: { halign: "left" },
-//                 1: { halign: "right" }
-//             }
-//         });
+        doc.autoTable({
+            startY: doc.lastAutoTable.finalY + 10,
+            head: [["Expenses", "Amount"]],
+            body: expenseBody,
+            theme: "grid",
+            columnStyles: {
+                0: { halign: "left" },
+                1: { halign: "right" }
+            }
+        });
 
-//         // Net Balance
-//         const balance =
-//             Number(data.total_income.replace(/,/g, "")) -
-//             Number(data.total_expense.replace(/,/g, ""));
+        // Net Balance
+        const balance =
+            Number(data.total_income.replace(/,/g, "")) -
+            Number(data.total_expense.replace(/,/g, ""));
 
-//         doc.setFont("helvetica", "bold");
-//         doc.text(
-//             "Net Balance: " + formatAmount(balance.toString()),
-//             20,
-//             doc.lastAutoTable.finalY + 15
-//         );
+        doc.setFont("helvetica", "bold");
+        doc.text(
+            "Net Balance: " + formatAmount(balance.toString()),
+            20,
+            doc.lastAutoTable.finalY + 15
+        );
 
-//     } else {
+    } else {
 
-//         doc.setFontSize(13);
-//         doc.setFont("helvetica", "bold");
-//         doc.text("Financial Summary", 20, 40);
+        doc.setFontSize(13);
+        doc.setFont("helvetica", "bold");
+        doc.text("Financial Summary", 20, 40);
 
-//         doc.setFont("helvetica", "normal");
-//         doc.setFontSize(12);
+        doc.setFont("helvetica", "normal");
+        doc.setFontSize(12);
 
-//         doc.text(`Total: ${formatAmount(data.summary.total)}`, 20, 55);
-//         doc.text(`${data.summary.note}`, 20, 65);
-//     }
+        doc.text(`Total: ${formatAmount(data.summary.total)}`, 20, 55);
+        doc.text(`${data.summary.note}`, 20, 65);
+    }
 
-//     // ===== FOOTER =====
-//     doc.setFontSize(10);
-//     doc.text("Generated by SSF Trust", 105, 285, { align: "center" });
+    // ===== FOOTER =====
+    doc.setFontSize(10);
+    doc.text("Generated by SSF Trust", 105, 285, { align: "center" });
 
-//     doc.save(`SSF_Financial_${year}.pdf`);
-// }
+    doc.save(`SSF_Financial_${year}.pdf`);
+}
